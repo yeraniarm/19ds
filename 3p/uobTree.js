@@ -36,7 +36,7 @@ class uobTree {
     }
     deleteNodeHelper(root, key) {
         if (root === null) {
-            // Empty tree return false;
+            // Vacío retorna: false;
         }
         if (key < root.data) {
             root.left = this.deleteNodeHelper(root.left, key);
@@ -45,24 +45,24 @@ class uobTree {
             root.right = this.deleteNodeHelper(root.right, key);
             return root;
         } else {
-            // No children
-            //case 1 - a leaf node
+            // Sin hijos
+            //caso 1 - a leaf node
             if (root.left === null && root.right === null) {
                 root = null;
                 return root;
             }
-            // Single Child cases
+            // Un solo hijo
             if (root.left === null) return root.right;
             if (root.right === null) return root.left;
 
-            // Both children, so need to find successor
+            // Ambos hijos, necesitamos encontrar sucesor
             let currNode = root.right;
             while (currNode.left !== null) {
                 currNode = currNode.left;
             }
             root.data = currNode.data;
 
-            // Delete the value from right subtree.
+            // Elimina el valor del subtree
             root.right = this.deleteNodeHelper(root.right, currNode.data);
             return root;
         }
@@ -91,23 +91,16 @@ class uobTree {
         }
         return finalData;
      }
-
 }
 
 let tree = new uobTree();
-tree.insert(50)
-tree.insert(17)
-tree.insert(72)
-tree.insert(12)
-tree.insert(54)
-tree.insert(23)
-tree.insert(76)
-tree.insert(9)
-tree.insert(14)
-tree.insert(19)
-tree.insert(67)
+tree.insert(1)
+tree.insert(2)
+tree.insert(3)
+tree.insert(4)
+tree.insert(5)
 console.log(tree);
-console.log(tree.inOrder()); //9,12,14,17,19,23,50,54,67,72,76
-console.log(tree.bfs());
-tree.deleteNode(12);
+console.log(tree.inOrder()); //1,2,3,4,5
+console.log(tree.bfs()); //[1,2,3,4,5]
+tree.deleteNode(3);
 console.log(tree);
